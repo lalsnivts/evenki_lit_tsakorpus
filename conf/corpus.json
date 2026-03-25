@@ -84,7 +84,7 @@
     "en",
     "ru"
   ],
-  "all_language_search_enabled": false,
+  "all_language_search_enabled": true,
   "gloss_search_enabled": true,
   "ambiguous_analyses": true,
   "doc_to_sentence_meta": ["genre", "year"],
