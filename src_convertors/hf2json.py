@@ -20,8 +20,13 @@ class HF2JSON:
         self.tp = TextProcessor(settings=self.corpusSettings,
                                 categories=self.categories)
         
-        self.src_file = os.path.join('..', 'data_raw', 'evenki_data.json')
-        self.target_dir = os.path.join('..', 'corpus', 'evenki', self.corpusSettings['corpus_name'])
+        base_dir = os.path.dirname(os.path.abspath(__file__))
+
+        self.src_file = os.path.join(base_dir, '..', 'data_raw', 'evenki_data.json')
+        self.src_file = os.path.abspath(self.src_file)
+
+        self.target_dir = os.path.join(base_dir, '..', 'corpus', 'evenki', self.corpusSettings['corpus_name'])
+        self.target_dir = os.path.abspath(self.target_dir)
 
     def convert(self):
         tStart = time.time()
@@ -40,17 +45,21 @@ class HF2JSON:
                 item = json.loads(line)
                 processed_evn_sents, _, _, _ = self.tp.process_string(item["evn"])
                 processed_rus_sents, _, _, _ = self.tp.process_string(item["ru"])
+                para_id = len(all_sentences) + 1
         
                 for s in processed_evn_sents:
                     s['lang'] = 0
-                    s['para'] = [{'lang': 'rus', 'text': item['ru']}]
-                    if 'meta' not in s: s['meta'] = {}
+                    s['para_alignment'] = [{'para_id': para_id}]
+                    if 'meta' not in s:
+                        s['meta'] = {}
                     s['meta']['source'] = item.get('source', '')
                     all_sentences.append(s)
 
                 for s in processed_rus_sents:
-                    s['lang'] = 1  # Указываем, что это русский поиск
-                    if 'meta' not in s: s['meta'] = {}
+                    s['lang'] = 1
+                    s['para_alignment'] = [{'para_id': para_id}]
+                    if 'meta' not in s:
+                        s['meta'] = {}
                     s['meta']['source'] = item.get('source', '')
                     all_sentences.append(s)
 
