@@ -1426,7 +1426,6 @@ class Indexator:
 
     def iterate_docs(self):
         for fname, fsize in sorted(self.filenames, key=lambda p: -p[1]):
-            # print(fname, fsize)
             if 'sample_size' in self.settings and 0 < self.settings['sample_size'] < 1:
                 # Only take a random sample of the source files (for test purposes)
                 if random.random() > self.settings['sample_size']:

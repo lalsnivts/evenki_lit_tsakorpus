@@ -1,0 +1,59 @@
+version: "3.8"
+
+services:
+  # ----------------------------------------------------------
+  # Elasticsearch 7.x – storage backend
+  # ----------------------------------------------------------
+  elasticsearch:
+    image: elasticsearch:7.17.10
+    container_name: tsakorpus-es
+    environment:
+      - discovery.type=single-node
+      - xpack.security.enabled=false
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+    ports:
+      - "9200:9200"
+    volumes:
+      - es_data:/usr/share/elasticsearch/data
+    healthcheck:
+      test: ["CMD-SHELL", "curl -sf http://localhost:9200/_cluster/health || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 12
+
+  # ----------------------------------------------------------
+  # Indexer – one-shot: downloads data & populates ES
+  # Run manually:  docker compose run --rm indexer
+  # ----------------------------------------------------------
+  indexer:
+    build:
+      context: .
+      target: indexer
+    container_name: tsakorpus-indexer
+    depends_on:
+      elasticsearch:
+        condition: service_healthy
+    environment:
+      - ELASTICSEARCH_HOST=elasticsearch
+    profiles:
+      - indexing
+
+  # ----------------------------------------------------------
+  # Web – Flask search interface
+  # ----------------------------------------------------------
+  web:
+    build:
+      context: .
+      target: web
+    container_name: tsakorpus-web
+    ports:
+      - "7342:7342"
+    depends_on:
+      elasticsearch:
+        condition: service_healthy
+    environment:
+      - ELASTICSEARCH_HOST=elasticsearch
+    restart: unless-stopped
+
+volumes:
+  es_data:
