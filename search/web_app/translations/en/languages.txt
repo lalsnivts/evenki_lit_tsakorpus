@@ -29,6 +29,7 @@ english	English
 english_note	English (note)
 erzya	Erzya
 estonian	Estonian
+evenki	Evenki
 finnish	Finnish
 french	French
 german	German

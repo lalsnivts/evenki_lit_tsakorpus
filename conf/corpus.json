@@ -3,7 +3,7 @@
   "corpus_name": "evenki",
   "citation": "Evenki corpus TODO.",
   "input_format": "json",
-  "debug": true,
+  "debug": false,
   "media": false,
   "video": false,
   "media_length": 60,
@@ -72,7 +72,8 @@
 
   "keyboards": {
     "evenki": "evenki",
-    "russian": "russian"
+    "russian": "russian",
+    "all": "all"
   },
   "generate_dictionary": true,
   "fulltext_view_enabled": true,
@@ -84,7 +85,7 @@
     "en",
     "ru"
   ],
-  "all_language_search_enabled": false,
+  "all_language_search_enabled": true,
   "gloss_search_enabled": true,
   "ambiguous_analyses": true,
   "doc_to_sentence_meta": ["genre", "year"],
