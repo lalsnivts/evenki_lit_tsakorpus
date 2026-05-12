@@ -14,48 +14,32 @@
   "query_timeout": 60,
   "year_sort_enabled": true,
   "viewable_meta": [
-    "filename",
     "title",
     "author",
+    "translator",
+    "year_of_publication",
     "genre",
-    "year",
-    "speakers",
-    "linguists"
-  ],
-  "sentence_meta": [
-    "speaker",
-    "gender",
-    "birthyear",
-    "speaker_type"
+    "type",
+    "source_language"
   ],
   "search_meta": {
     "columns": [
-      [
-        {"type": "input_text", "name": "author", "placeholder": "Author"},
-        {"type": "input_text", "name": "title", "placeholder": "Title"},
-        {"type": "separator"},
-        {"type": "input_number", "name": "year_from", "placeholder": "Year: from"},
-        {"type": "input_number", "name": "year_to", "placeholder": "Year: to"}
-      ],
-      [
-        {"type": "input_text", "name": "genre", "placeholder": "Genre"},
-        {"type": "option", "name": "genre", "value": "dialogue", "text": "dialogue"},
-        {"type": "option", "name": "genre", "value": "monologue", "text": "Monologue"},
-        {"type": "option", "name": "genre", "value": "experiment", "text": "Experiment"}
-	  ]
+      "title",
+      "author",
+      "genre",
+      "year_of_publication"
     ],
     "stat_options": [
       "genre",
       "author",
-      "linguists",
-      "speakers",
-      "title",
-      "year",
-      "speaker",
-      "gender",
-      "birthyear"
+      "type"
     ]
   },
+  "sentence_meta": [
+    "sentence_num",
+    "type",
+    "internal_id"
+  ],
   "word_fields":
   [
     "trans_ru"

@@ -2,9 +2,53 @@ import os
 import json
 import sys
 import time
+import csv
 
 sys.path.append(os.path.join(os.path.dirname(__file__), 'simple_convertors'))
 from simple_convertors.text_processor import TextProcessor
+
+
+def generate_meta_csv(raw_json_path, meta_output_path):
+    """
+    Пробегается по сырому датасету, собирает уникальные метаданные 
+    для каждого 'source' и формирует правильный meta.csv для tsakorpus.
+    """
+    meta_dict = {}
+    
+    with open(raw_json_path, 'r', encoding='utf-8') as f:
+        for line in f:
+            data = json.loads(line)
+            source = data.get('source')
+            if not source:
+                continue
+            
+            if source not in meta_dict:
+                meta_dict[source] = {
+                    'filename': source,
+                    'title': data.get('title', '').replace('\n', ' '),
+                    'author': data.get('author', ''),
+                    'translator': data.get('translator', ''),
+                    'year_of_publication': data.get('year_of_publication', ''),
+                    'genre': data.get('genre', ''),
+                    'type': data.get('type', ''),
+                    'source_language': data.get('source_language', '')
+                }
+    
+    # tsakorpus ожидает формат CSV, но с табуляцией (TSV)
+    fieldnames = [
+        'filename', 'title', 'author', 'translator', 
+        'year_of_publication', 'genre', 'type', 'source_language'
+    ]
+    
+    # Сохраняем файл в директорию, откуда TextProcessor будет его читать
+    with open(meta_output_path, 'w', encoding='utf-8', newline='') as f:
+        writer = csv.DictWriter(f, fieldnames=fieldnames, delimiter='\t')
+        writer.writeheader()
+        for meta in meta_dict.values():
+            writer.writerow(meta)
+    
+    print(f"Сгенерирован файл метаданных: {meta_output_path}")
+
 
 class HF2JSON:
     def __init__(self):
@@ -78,3 +122,7 @@ class HF2JSON:
 if __name__ == '__main__':
     converter = HF2JSON()
     converter.convert()
+    generate_meta_csv(
+        '../data_raw/evenki_data.json', 
+        '../corpus/evenki/meta.csv'
+    )

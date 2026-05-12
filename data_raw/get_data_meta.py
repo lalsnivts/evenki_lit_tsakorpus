@@ -1,0 +1,18 @@
+import os
+import json
+from datasets import load_dataset
+
+print("Downloading from Hugging Face...")
+dataset = load_dataset("siberian-lang-lab/evenki-rus-parallel-corpora", revision="ellina-added_new_columns_TEST")
+
+script_dir = os.path.dirname(os.path.abspath(__file__))
+output_path = os.path.join(script_dir, "evenki_data.json")
+# os.makedirs(os.path.dirname(output_path), exist_ok=True)
+dataset['train'].to_json(output_path, force_ascii=False)
+
+print(f"Dataset successfully saved to {output_path}")
+
+with open(output_path, 'r', encoding='utf-8') as f:
+    for i in range(2):
+        print(f"\nRecord {i+1}:")
+        print(json.loads(next(f)))
