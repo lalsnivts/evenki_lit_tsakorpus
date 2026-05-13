@@ -37,7 +37,6 @@
   },
   "sentence_meta": [
     "sentence_num",
-    "type",
     "internal_id"
   ],
   "word_fields":
