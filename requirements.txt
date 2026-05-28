@@ -11,5 +11,4 @@ pympler
 python-docx
 datasets
 flask_apscheduler
-subprocess
 logging
