@@ -1,0 +1,184 @@
+[2026-05-28 23:48:48] INFO: Adding job tentatively -- it will be properly scheduled when the scheduler starts
+[2026-05-28 23:48:48] INFO: Added job "update_corpus" to job store "default"
+[2026-05-28 23:48:48] INFO: Scheduler started
+[2026-05-28 23:48:48] INFO: [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+[2026-05-28 23:48:48] INFO: [33mPress CTRL+C to quit[0m
+[2026-05-28 23:50:00] INFO: Running job "update_corpus (trigger: cron[minute='*/2'], next run at: 2026-05-28 23:50:00 MSK)" (scheduled at 2026-05-28 23:50:00+03:00)
+[2026-05-28 23:50:00] INFO: Start update
+[2026-05-28 23:50:00] INFO: Running: python get_data.py
+[2026-05-28 23:50:06] INFO: Output from data_raw:
+Downloading from Hugging Face...
+Dataset successfully saved to data_raw/evenki_data.json
+
+Record 1:
+[2026-05-28 23:50:06] ERROR: Error from data_raw:
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+
+Creating json from Arrow format:   0%|          | 0/5 [00:00<?, ?ba/s]
+Creating json from Arrow format: 100%|##########| 5/5 [00:00<00:00, 117.62ba/s]
+Traceback (most recent call last):
+  File "C:\evenki_lit_tsakorpus\data_raw\get_data.py", line 16, in <module>
+    print(json.loads(next(f)))
+  File "C:\Python312\Lib\encodings\cp1251.py", line 19, in encode
+    return codecs.charmap_encode(input,self.errors,encoding_table)[0]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeEncodeError: 'charmap' codec can't encode character '\u04c8' in position 69: character maps to <undefined>
+[2026-05-28 23:50:06] INFO: Running: python hf2json.py
+[2026-05-28 23:50:08] INFO: Output from src_convertors:
+Starting processing of C:\evenki_lit_tsakorpus\data_raw\evenki_data.json...
+Processed in 2.64 seconds.
+Total documents generated: 30
+[2026-05-28 23:50:08] INFO: Running: python indexator.py
+[2026-05-28 23:50:52] INFO: Output from indexator:
+It seems that a corpus named "evenki" already exists. Do you want to overwrite it? [y/n]
+Indexing sentence 0 , 9 words so far.
+Indexing sentence 500 , 5728 words so far.
+Indexing sentence 1000 , 9960 words so far.
+Indexing sentence 1500 , 14496 words so far.
+Indexing sentence 2000 , 19063 words so far.
+Indexing sentence 2500 , 23360 words so far.
+Indexing sentence 3000 , 27221 words so far.
+Indexing sentence 3500 , 31798 words so far.
+Indexing sentence 4000 , 36334 words so far.
+Indexing sentence 4500 , 40474 words so far.
+Indexing sentence 5000 , 45350 words so far.
+Indexing sentence 5500 , 50865 words so far.
+Indexing sentence 6000 , 56505 words so far.
+Indexing sentence 6500 , 62199 words so far.
+Indexing sentence 7000 , 67615 words so far.
+Indexing sentence 7500 , 72708 words so far.
+Indexing sentence 8000 , 77342 words so far.
+Indexing sentence 8500 , 78650 words so far.
+Indexing sentence 9000 , 79844 words so far.
+Indexing sentence 9500 , 80938 words so far.
+Indexing sentence 10000 , 82095 words so far.
+Indexing sentence 10500 , 83734 words so far.
+Indexing document 0
+Indexing sentence 11000 , 86562 words so far.
+Indexing sentence 11500 , 91659 words so far.
+Indexing sentence 12000 , 97253 words so far.
+Indexing sentence 12500 , 102936 words so far.
+Indexing sentence 13000 , 108611 words so far.
+Indexing sentence 13500 , 113959 words so far.
+Indexing sentence 14000 , 118993 words so far.
+Indexing sentence 14500 , 124517 words so far.
+Indexing sentence 15000 , 129439 words so far.
+Indexing sentence 15500 , 133786 words so far.
+Indexing sentence 16000 , 138443 words so far.
+Indexing sentence 16500 , 142829 words so far.
+Indexing sentence 17000 , 146798 words so far.
+Indexing sentence 17500 , 150978 words so far.
+Indexing sentence 18000 , 155601 words so far.
+Indexing sentence 18500 , 160085 words so far.
+Indexing sentence 19000 , 162425 words so far.
+Indexing sentence 19500 , 163662 words so far.
+Indexing sentence 20000 , 164825 words so far.
+Indexing sentence 20500 , 165919 words so far.
+Indexing sentence 21000 , 168304 words so far.
+Indexing sentence 21500 , 171300 words so far.
+Processing words in evenki...
+indexing word 0
+indexing word 500
+indexing word 1000
+indexing word 1500
+indexing word 2000
+indexing word 2500
+indexing word 3000
+indexing word 3500
+indexing word 4000
+indexing word 4500
+indexing word 5000
+indexing word 5500
+indexing word 6000
+indexing word 6500
+indexing word 7000
+indexing word 7500
+indexing word 8000
+indexing word 8500
+indexing word 9000
+indexing word 9500
+indexing word 10000
+indexing word 10500
+indexing word 11000
+indexing word 11500
+indexing word 12000
+indexing word 12500
+indexing word 13000
+indexing word 13500
+indexing word 14000
+indexing word 14500
+indexing word 15000
+indexing word 15500
+Processing words in russian...
+indexing word 0
+indexing word 500
+indexing word 1000
+indexing word 1500
+indexing word 2000
+indexing word 2500
+indexing word 3000
+indexing word 3500
+indexing word 4000
+indexing word 4500
+indexing word 5000
+indexing word 5500
+indexing word 6000
+indexing word 6500
+indexing word 7000
+indexing word 7500
+indexing word 8000
+indexing word 8500
+indexing word 9000
+indexing word 9500
+indexing word 10000
+indexing word 10500
+indexing word 11000
+indexing word 11500
+indexing word 12000
+indexing word 12500
+indexing word 13000
+Generating dictionary for evenki...
+processing word 0 for the dictionary
+processing word 1000 for the dictionary
+processing word 2000 for the dictionary
+processing word 3000 for the dictionary
+processing word 4000 for the dictionary
+processing word 5000 for the dictionary
+processing word 6000 for the dictionary
+processing word 7000 for the dictionary
+processing word 8000 for the dictionary
+processing word 9000 for the dictionary
+processing word 10000 for the dictionary
+processing word 11000 for the dictionary
+processing word 12000 for the dictionary
+processing word 13000 for the dictionary
+processing word 14000 for the dictionary
+processing word 15000 for the dictionary
+Generating dictionary for russian...
+processing word 0 for the dictionary
+processing word 1000 for the dictionary
+processing word 2000 for the dictionary
+processing word 3000 for the dictionary
+processing word 4000 for the dictionary
+processing word 5000 for the dictionary
+processing word 6000 for the dictionary
+processing word 7000 for the dictionary
+processing word 8000 for the dictionary
+processing word 9000 for the dictionary
+processing word 10000 for the dictionary
+processing word 11000 for the dictionary
+processing word 12000 for the dictionary
+processing word 13000 for the dictionary
+Corpus indexed in 42.319302558898926 seconds: 31 documents, 21976 sentences, 172908 words, 29088 word types (different words).
+[2026-05-28 23:50:52] ERROR: Error from indexator:
+C:\evenki_lit_tsakorpus\indexator\indexator.py:10: DeprecationWarning: Importing from the 'elasticsearch.client' module is deprecated. Instead use 'elasticsearch' module for importing the client.
+  from elasticsearch.client import IndicesClient
+C:\evenki_lit_tsakorpus\indexator\indexator.py:1365: DeprecationWarning: Passing transport options in the API method is deprecated. Use 'Elasticsearch.options()' instead.
+  bulk(self.es, self.iterate_sentences(fname), chunk_size=1000, request_timeout=120)
+C:\evenki_lit_tsakorpus\indexator\indexator.py:1484: DeprecationWarning: Passing transport options in the API method is deprecated. Use 'Elasticsearch.options()' instead.
+  bulk(self.es, self.iterate_docs(), chunk_size=200, request_timeout=60)
+C:\evenki_lit_tsakorpus\indexator\indexator.py:1207: DeprecationWarning: Passing transport options in the API method is deprecated. Use 'Elasticsearch.options()' instead.
+  bulk(self.es, self.iterate_words(), chunk_size=1000, request_timeout=120)
+[2026-05-28 23:50:52] INFO: Finished update
+[2026-05-28 23:50:52] INFO: Job "update_corpus (trigger: cron[minute='*/2'], next run at: 2026-05-28 23:52:00 MSK)" executed successfully
