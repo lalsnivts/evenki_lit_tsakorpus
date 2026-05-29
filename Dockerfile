@@ -34,7 +34,7 @@ CMD ["sh", "-c", "\
     until curl -sf http://${ELASTICSEARCH_HOST:-localhost}:9200/_cluster/health >/dev/null 2>&1; do sleep 2; done && \
     echo '==> Elasticsearch is ready.' && \
     echo '==> Downloading dataset from HuggingFace...' && \
-    cd /app/data_raw && python get_data_meta.py && \
+    cd /app/data_raw && python get_meta_data.py && \
     echo '==> Converting to tsakorpus JSON...' && \
     cd /app/src_convertors && python hf2json.py && \
     echo '==> Indexing into Elasticsearch...' && \
