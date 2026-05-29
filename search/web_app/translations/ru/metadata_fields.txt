@@ -2,7 +2,6 @@ account_type	тип аккаунта
 account_type_post	вид аккаунта (пост)
 age	возраст
 annotators	разметчики
-author	автор
 birth_place	место рождения
 birth_year	год рождения
 birthplace	место рождения
@@ -63,15 +62,19 @@ style	стиль
 subdialect	говор
 subject	предмет
 tagging	разметка
-title	заголовок
 title_en	заголовок (английский)
 title_ru	заголовок (русский)
 topic	тема
-translator	переводчик
-type	тип
 year	год
 year_birth	год рождения автора
 year_from	год: от
 year_post	год (пост)
 year_publ	год публикации
 year_to	год: до
+title	Название
+author	Автор
+translator	Переводчик
+year_of_publication	Год издания
+genre	Жанр
+type	Тип текста
+source_language	Язык источника

@@ -3,10 +3,14 @@
   "corpus_dir": "corpus",
   "meta_filename": "meta.csv",
   "error_log": "error.log",
-  "meta_fields":
-  [
+  "meta_fields": [
+    "title",
     "author",
-	"title"
+    "translator",
+    "year_of_publication",
+    "genre",
+    "type",
+    "source_language"
   ],
   "meta_files_ext": false,
   "meta_files_dir": true,

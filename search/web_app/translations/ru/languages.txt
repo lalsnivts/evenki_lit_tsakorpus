@@ -29,6 +29,7 @@ english	английский
 english_note	английский (комментарии)
 erzya	эрзянский
 estonian	эстонский
+evenki	Эвенкийский
 finnish	финский
 french	французский
 german	немецкий
@@ -63,7 +64,7 @@ ossetic_digor	дигорский
 ossetic_iron	иронский
 polish	польский
 romani	цыганский
-russian	русский
+russian	Русский
 san	сан
 selkup	селькупский
 senufo	сенуфо

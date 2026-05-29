@@ -3,7 +3,7 @@
   "corpus_name": "evenki",
   "citation": "Evenki corpus TODO.",
   "input_format": "json",
-  "debug": true,
+  "debug": false,
   "media": false,
   "video": false,
   "media_length": 60,
@@ -14,48 +14,44 @@
   "query_timeout": 60,
   "year_sort_enabled": true,
   "viewable_meta": [
-    "filename",
     "title",
     "author",
+    "translator",
+    "year_of_publication",
     "genre",
-    "year",
-    "speakers",
-    "linguists"
-  ],
-  "sentence_meta": [
-    "speaker",
-    "gender",
-    "birthyear",
-    "speaker_type"
+    "type",
+    "source_language"
   ],
   "search_meta": {
     "columns": [
-      [
-        {"type": "input_text", "name": "author", "placeholder": "Author"},
-        {"type": "input_text", "name": "title", "placeholder": "Title"},
-        {"type": "separator"},
-        {"type": "input_number", "name": "year_from", "placeholder": "Year: from"},
-        {"type": "input_number", "name": "year_to", "placeholder": "Year: to"}
-      ],
-      [
-        {"type": "input_text", "name": "genre", "placeholder": "Genre"},
-        {"type": "option", "name": "genre", "value": "dialogue", "text": "dialogue"},
-        {"type": "option", "name": "genre", "value": "monologue", "text": "Monologue"},
-        {"type": "option", "name": "genre", "value": "experiment", "text": "Experiment"}
-	  ]
+    [
+      {"type": "input_text", 
+      "name": "author", 
+      "placeholder": "Author"},
+      {"type": "input_text", 
+      "name": "title", 
+      "placeholder": "Название"},
+      {"type": "input_number", 
+      "name": "year_of_publication", 
+      "placeholder": "Год"}],
+    [
+      {"type": "input_text", "name": "genre", "placeholder": "Жанр"},
+      {"type": "option", "name": "genre", "value": "folklore", "text": "folklore"},
+      {"type": "option", "name": "genre", "value": "lifestory", "text": "lifestory"}],
+    [
+      {"type": "input_text", "name": "type", "placeholder": "Тип текста"},
+      {"type": "option", "name": "type", "value": "proverb", "text": "proverb"},
+      {"type": "option", "name": "type", "value": "written", "text": "written"}]
     ],
     "stat_options": [
+      "year_of_publication",
       "genre",
-      "author",
-      "linguists",
-      "speakers",
-      "title",
-      "year",
-      "speaker",
-      "gender",
-      "birthyear"
-    ]
-  },
+      "type"
+    ]},
+    "sentence_meta": [
+    "sentence_num",
+    "internal_id"
+  ],
   "word_fields":
   [
     "trans_ru"
@@ -68,11 +64,10 @@
   [
     "trans_ru"
   ],
-
-
   "keyboards": {
     "evenki": "evenki",
-    "russian": "russian"
+    "russian": "russian",
+    "all": "all"
   },
   "generate_dictionary": true,
   "fulltext_view_enabled": true,
