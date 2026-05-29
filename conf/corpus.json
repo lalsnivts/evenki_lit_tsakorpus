@@ -24,18 +24,31 @@
   ],
   "search_meta": {
     "columns": [
-      "title",
-      "author",
-      "genre",
-      "year_of_publication"
+    [
+      {"type": "input_text", 
+      "name": "author", 
+      "placeholder": "Author"},
+      {"type": "input_text", 
+      "name": "title", 
+      "placeholder": "Название"},
+      {"type": "input_number", 
+      "name": "year_of_publication", 
+      "placeholder": "Год"}],
+    [
+      {"type": "input_text", "name": "genre", "placeholder": "Жанр"},
+      {"type": "option", "name": "genre", "value": "folklore", "text": "folklore"},
+      {"type": "option", "name": "genre", "value": "lifestory", "text": "lifestory"}],
+    [
+      {"type": "input_text", "name": "type", "placeholder": "Тип текста"},
+      {"type": "option", "name": "type", "value": "proverb", "text": "proverb"},
+      {"type": "option", "name": "type", "value": "written", "text": "written"}]
     ],
     "stat_options": [
+      "year_of_publication",
       "genre",
-      "author",
       "type"
-    ]
-  },
-  "sentence_meta": [
+    ]},
+    "sentence_meta": [
     "sentence_num",
     "internal_id"
   ],
@@ -51,8 +64,6 @@
   [
     "trans_ru"
   ],
-
-
   "keyboards": {
     "evenki": "evenki",
     "russian": "russian",

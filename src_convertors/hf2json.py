@@ -58,6 +58,7 @@ class HF2JSON:
                 if not source:
                     continue
                 
+                # ИЗМЕНЕНИЕ: Заводим два раздельных списка под языки
                 if source not in documents:
                     documents[source] = {
                         'meta': {
@@ -66,7 +67,8 @@ class HF2JSON:
                             'year_of_publication': '', 'genre': '', 
                             'type': '', 'source_language': ''
                         },
-                        'sentences': [],
+                        'sentences_evn': [],
+                        'sentences_ru': [],
                         'para_count': 0
                     }
                 
@@ -86,6 +88,7 @@ class HF2JSON:
                 sent_num = item.get('sentence_num')
                 internal_id = item.get('internal_id')
                 
+                # Заполняем эвенкийский список
                 for s in processed_evn_sents:
                     s['lang'] = 0
                     s['para_alignment'] = [{'para_id': str(para_id)}]
@@ -94,12 +97,12 @@ class HF2JSON:
                     
                     s['meta']['source'] = source 
                     
-                    # Записываем метаданные строго ВНУТРЬ словаря 'meta'
                     if sent_num is not None: s['meta']['sentence_num'] = sent_num
                     if internal_id is not None: s['meta']['internal_id'] = internal_id
                     
-                    documents[source]['sentences'].append(s)
+                    documents[source]['sentences_evn'].append(s)
 
+                # Заполняем русский список
                 for s in processed_rus_sents:
                     s['lang'] = 1
                     s['para_alignment'] = [{'para_id': str(para_id)}]
@@ -111,12 +114,13 @@ class HF2JSON:
                     if sent_num is not None: s['meta']['sentence_num'] = sent_num
                     if internal_id is not None: s['meta']['internal_id'] = internal_id
                     
-                    documents[source]['sentences'].append(s)
+                    documents[source]['sentences_ru'].append(s)
 
         for source, doc_data in documents.items():
+            # ИЗМЕНЕНИЕ: Склеиваем массивы: сначала все эвенкийские, потом все русские
             final_json = {
                 'meta': doc_data['meta'],
-                'sentences': doc_data['sentences']
+                'sentences': doc_data['sentences_evn'] + doc_data['sentences_ru']
             }
             safe_filename = "".join([c for c in source if c.isalpha() or c.isdigit() or c in ['_', '-']]).rstrip()
             if not safe_filename:
