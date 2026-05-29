@@ -61,7 +61,7 @@ pip install -r requirements.txt
 Перед этим убедитесь, что у вас есть доступ к нужному датасету на Hugging Face
 ``` bash
 cd data_raw
-python get_data.py
+python get_meta_data.py
 cd ../src_convertors
 python hf2json.py
 cd ../indexator
